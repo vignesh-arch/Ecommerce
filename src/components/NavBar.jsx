@@ -9,6 +9,7 @@ import { DataContext } from '../context/DataContext';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/joy/Button';
 import Cart from './Cart'
+import { HomeTwoTone } from '@mui/icons-material';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import '../assets/styles/NavBar.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
@@ -17,7 +18,7 @@ const NavBar = () => {
   const context=useContext(DataContext);
   const [filter,setFilter]=useState("All");
   const [query,setQuery]=useState("");
-  const options=data.map((products)=>{
+  const options=[...data].map((products)=>{
     return {
       label:products.name
     }
@@ -29,7 +30,6 @@ const NavBar = () => {
   }
   function onSearch(event,value){
     if(value!=null){
-      console.log(value);
       setQuery(value);
       context.filterProduct(filter,value);
     }
@@ -77,7 +77,8 @@ const NavBar = () => {
                     <Button onClick={()=>context.filterProduct(filter,query)}>Search</Button>
                     </div>
                     <div className="nav-bar">
-                        <Link to="/cart" className="nav-text"><Button startDecorator={<ShoppingBagIcon/>}>Cart</Button></Link>
+                    <Link to="/" className='nav-text'><Button startDecorator={<HomeTwoTone/>}>Home</Button></Link>
+                      <Link to="/cart" className="nav-text"><Button startDecorator={<ShoppingBagIcon/>}>Cart</Button></Link>
                     </div>
                     </div>
                 </nav>

@@ -3,13 +3,14 @@ import ButtonGroup from '@mui/joy/ButtonGroup';
 import Button from '@mui/joy/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import "../assets/styles/CartComponent.css"
 import Divider from '@mui/joy/Divider';
 import Cancel from '@mui/icons-material/Cancel';
-
+import { DataContext } from '../context/DataContext';
 const CartComponent = (props) => {
     const product=props.product;
+    const {addToCart}=useContext(DataContext);
     const [quantity,setQuantity]=useState(1);
     const [cost,updateCost]=useState(`$${product.price}`);
     const onClickPlus=()=>{
@@ -54,7 +55,7 @@ const CartComponent = (props) => {
                                     </ButtonGroup>
                                 </div>
                                 <ButtonGroup className="remove">
-                                    <Button endDecorator={<Cancel/>}>Remove</Button>
+                                    <Button onClick={()=>{addToCart(product,"delete")}} endDecorator={<Cancel/>}>Remove</Button>
                                 </ButtonGroup>    
                             </div>
                         </div>                

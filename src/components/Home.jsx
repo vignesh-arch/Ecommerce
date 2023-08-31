@@ -6,11 +6,11 @@ import '../assets/styles/Home.css'
 
 const Home = () => {
   const {filteredProduct}=useContext(DataContext);
-  const [productList,setProductList]=useState(filteredProduct.map((product)=>{
+  const [productList,setProductList]=useState([...filteredProduct].map((product)=>{
     return <Product className="products" key={product.id} product={product}/>
   }));
   useEffect(()=>{
-    setProductList(filteredProduct.map((product)=>{
+    setProductList([...filteredProduct].map((product)=>{
       return <Product key={product.id} product={product}/>
     }))
   },[filteredProduct])

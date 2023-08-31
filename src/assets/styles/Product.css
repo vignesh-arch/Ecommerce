@@ -48,6 +48,7 @@
 }
 .brand{
     font-family: "Roboto",sans-serif;
+    margin-right: 0.7rem;
 }
 .name{
     font-family:"Roboto",sans-serif;
@@ -98,6 +99,8 @@ button{
     border-radius: 0.5rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
     cursor:pointer;
+    color:#444444;
+    font-weight: bold;
 }
 .add-cart{
     display: flex;
@@ -105,5 +108,16 @@ button{
 }
 p,h2,h4{
     margin:0;
+}
+.brand-stock{
+    display: flex;
+    align-items: center;
+}
+.brand-stock p{
+    border-radius: 1rem;
+    color:white;
+    padding:0 0.5rem 0 0.5rem;
+    font-size: small;
+    font-weight: bold;
 }
 
