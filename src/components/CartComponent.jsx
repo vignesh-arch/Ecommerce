@@ -8,8 +8,8 @@ import "../assets/styles/CartComponent.css"
 import Divider from '@mui/joy/Divider';
 import Cancel from '@mui/icons-material/Cancel';
 import { DataContext } from '../context/DataContext';
-const CartComponent = (props) => {
-    const product=props.product;
+import { AddCircleOutlineSharp,ClearOutlined,RemoveCircleOutlineSharp } from '@mui/icons-material';
+const CartComponent = ({product}) => {
     const {addToCart}=useContext(DataContext);
     const [quantity,setQuantity]=useState(1);
     const [cost,updateCost]=useState(`$${product.price}`);
@@ -30,37 +30,19 @@ const CartComponent = (props) => {
     return (
         <div>
             <div className="cart-container">
-                <img src={product.imageURL} alt={product.name}/>
-                <div className='description-container'>
-                    <div className='description'>
-                        <p id='name'>{product.name}</p>
-                        <p id="description">{product.description}</p>
-                    </div>
-                    <div className='features'>
-                        <button>{product.brand}</button>
-                        <button>{product.gender}</button>
-                        <button>{product.category}</button>
-                    </div>
-                    <Divider/>
-                    <div className='button-group'>
-                        <div class="price-container">
-                            <p id="price-title">Price</p>
-                            <div className='order'>
-                                <div className='price-quantity'>
-                                    <h1 id="cost">{cost}</h1>
-                                    <ButtonGroup className="count">
-                                        <Button onClick={onClickMinus}><RemoveCircleIcon/></Button>
-                                        <Button>{quantity}</Button>
-                                        <Button onClick={onClickPlus}><AddCircleIcon/></Button>
-                                    </ButtonGroup>
-                                </div>
-                                <ButtonGroup className="remove">
-                                    <Button onClick={()=>{addToCart(product,"delete")}} endDecorator={<Cancel/>}>Remove</Button>
-                                </ButtonGroup>    
-                            </div>
-                        </div>                
-                    </div>
+                <img src={product.imageURL} alt="product image"/>
+                <div className='details'>
+                    <h4>{product.name}</h4>
+                    <p>{product.gender}</p>
+                    <u><p>Add Gift Wrapping</p></u>
                 </div>
+                <h4 className='cost'>{cost}</h4>
+                <ButtonGroup className="btn">
+                    <Button onClick={onClickMinus}><RemoveCircleOutlineSharp/></Button>
+                    <Button>{quantity}</Button>
+                    <Button onClick={onClickPlus}><AddCircleOutlineSharp/></Button>
+                </ButtonGroup>
+                <ClearOutlined className="remove" onClick={()=>{addToCart(product,"delete")}}/>
             </div>
         </div>
     )
