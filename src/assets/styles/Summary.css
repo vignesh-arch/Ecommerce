@@ -10,5 +10,10 @@
 .total p{
     font-weight: bold;
 }
+.continue{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 

@@ -1,12 +1,8 @@
 import React from 'react';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Button from '@mui/joy/Button';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { useState,useContext } from 'react';
+import {useContext } from 'react';
 import "../assets/styles/CartComponent.css"
-import Divider from '@mui/joy/Divider';
-import Cancel from '@mui/icons-material/Cancel';
 import { DataContext } from '../context/DataContext';
 import { AddCircleOutlineSharp,ClearOutlined,ProductionQuantityLimits,RemoveCircleOutlineSharp } from '@mui/icons-material';
 const CartComponent = ({product}) => {

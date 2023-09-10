@@ -1,4 +1,4 @@
-import React, { useContext,useState,useEffect } from 'react'
+import React, { useContext } from 'react'
 import { DataContext } from '../context/DataContext';
 import CartComponent from './CartComponent';
 import "../assets/styles/Cart.css"

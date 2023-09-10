@@ -1,5 +1,5 @@
 
-import { useContext,useRef } from 'react';
+import { useContext} from 'react';
 import { DataContext } from '../context/DataContext'
 import Product from './Product';
 import '../assets/styles/Home.css'

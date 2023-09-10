@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { DataContext } from '../context/DataContext'
-import { ArrowForward, ArrowForwardIosRounded, ArrowForwardOutlined, ArrowForwardRounded, KeyboardArrowRight } from '@mui/icons-material';
+import { KeyboardArrowRight } from '@mui/icons-material';
 import Button from '@mui/joy/Button'
 import '../assets/styles/Summary.css'
+import { Link } from 'react-router-dom';
 
 const Summary = () => {
   const {cartItems}=useContext(DataContext);
@@ -34,6 +35,10 @@ const Summary = () => {
       <Button>
         CheckOut<KeyboardArrowRight/>
       </Button>
+      <div className='continue'>
+        <p>or</p>
+        <Link to='/'>Continue Shopping</Link>
+      </div>
     </div>
   )
 }
