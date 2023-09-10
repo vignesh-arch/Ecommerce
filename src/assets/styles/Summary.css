@@ -1,0 +1,14 @@
+.summary{
+    display: flex;
+    flex-direction: column;
+}
+.subtotal,.ship,.coupon,.total{
+    display: flex;
+    justify-content: space-between;
+    margin:0.5rem 0 0 0;
+}
+.total p{
+    font-weight: bold;
+}
+
+

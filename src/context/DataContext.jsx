@@ -1,13 +1,13 @@
-import {createContext, useReducer,useState} from "react"
+import {createContext, useReducer} from "react";
+import { useImmer } from "use-immer";
 import { data } from "./data";
 import { reducer } from "./reducer";
-import { ProductionQuantityLimits } from "@mui/icons-material";
 
 export const DataContext=createContext({});
 
 export const DataProvider=({children})=>{
     const [filter,dispatch]=useReducer(reducer,data);
-    const [cart,updateCart]=useState({items:[],itemId:[]});
+    const [cart,updateCart]=useImmer({});
     const filterProduct=(filterType,query)=>{
         dispatch(
             {
@@ -18,18 +18,26 @@ export const DataProvider=({children})=>{
     }
     const addToCart=(product,type)=>{
         if(type==="add"){
-            updateCart({items:[...cart.items,product],itemId:[...cart.itemId,product.id]});
+            updateCart(draft=>{
+                return {...draft,[product.id]:product}
+            });
+        }
+        else if(typeof type==='number'){
+            updateCart(draft=>{
+                draft[product.id].quantity+=type;
+            });
         }
         else{
-            updateCart({
-                items:[...cart.items.filter((item)=>{
-                    return item.id!==product.id;
-                }
-                )],
-                itemId:[...cart.itemId.filter((id)=>{
-                    return id!==product.id;
-                })]
-            });
+            console.log(Object.keys(cart).
+            filter((key)=>key!==product.id));
+            let items=Object.keys(cart).
+                filter((key)=>key!=product.id).
+                reduce((obj,key)=>{
+                    obj[key]=cart[key];
+                    return obj;
+                },{})
+            console.log(items);
+            updateCart(items);
         }
     }
     return(

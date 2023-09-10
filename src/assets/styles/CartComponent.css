@@ -2,24 +2,25 @@
     display:flex;
     align-items: center;
     margin-bottom:2rem;
+    flex-wrap: wrap;
+    line-height: normal;
 }
 .cart-container img{
     object-fit: cover;
-    height:7.5rem;
+    height:8.7rem;
     border-radius: 18px;
     margin-right: 2rem;
 }
 .details{
     display: flex;
     flex-direction: column;
-    width: 45%;
+    margin-right: 2rem;
+    width: 25%;
+    flex-wrap: wrap;
 }
 .btn{
     height: fit-content;
-    margin:0 2rem 0 5rem;
-}
-h4,p{
-    line-height: 2;
+    margin:0 2rem 0 0;
 }
 p{
     font-size: small;
@@ -39,6 +40,6 @@ h4{
 }
 .cost{
     font-size: large;
-    margin-left: 5rem;
     font-weight:500;
+    margin-right: 2rem;
 }

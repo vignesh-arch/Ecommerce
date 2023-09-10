@@ -8,23 +8,21 @@ import "../assets/styles/CartComponent.css"
 import Divider from '@mui/joy/Divider';
 import Cancel from '@mui/icons-material/Cancel';
 import { DataContext } from '../context/DataContext';
-import { AddCircleOutlineSharp,ClearOutlined,RemoveCircleOutlineSharp } from '@mui/icons-material';
+import { AddCircleOutlineSharp,ClearOutlined,ProductionQuantityLimits,RemoveCircleOutlineSharp } from '@mui/icons-material';
 const CartComponent = ({product}) => {
-    const {addToCart}=useContext(DataContext);
-    const [quantity,setQuantity]=useState(1);
-    const [cost,updateCost]=useState(`$${product.price}`);
+    const {addToCart,cartItems}=useContext(DataContext);
+    const cost=cartItems[product.id].price*cartItems[product.id].quantity;
     const onClickPlus=()=>{
-        setQuantity(quantity+1);
-        updateCost(`$${(quantity+1)*product.price}`);
-    }
-    const onClickMinus=()=>{
-        console.log(product.name)
-        if(quantity>1){
-            setQuantity(quantity-1);
-            updateCost(`$${(quantity-1)*product.price}`);
+        if(cartItems[product.id].quantity<=product.items_left-1){
+            addToCart(product,1);
         }
         else{
-            setQuantity(1);
+            alert(`Only ${product.items_left} items left`);
+        }
+    }
+    const onClickMinus=()=>{
+        if(cartItems[product.id].quantity>1){
+           addToCart(product,-1);
         }
     }
     return (
@@ -36,10 +34,10 @@ const CartComponent = ({product}) => {
                     <p>{product.gender}</p>
                     <u><p>Add Gift Wrapping</p></u>
                 </div>
-                <h4 className='cost'>{cost}</h4>
+                <h4 className='cost'>${cost}</h4>
                 <ButtonGroup className="btn">
                     <Button onClick={onClickMinus}><RemoveCircleOutlineSharp/></Button>
-                    <Button>{quantity}</Button>
+                    <Button>{cartItems[product.id].quantity}</Button>
                     <Button onClick={onClickPlus}><AddCircleOutlineSharp/></Button>
                 </ButtonGroup>
                 <ClearOutlined className="remove" onClick={()=>{addToCart(product,"delete")}}/>

@@ -17,10 +17,11 @@ const Product = (props) => {
     });
     const [cartIcon,setCartIcon]=useState(
       product.is_in_inventory===true?
-      cartItems.itemId.includes(product.id)?
+      [product.id] in cartItems?
       {icon:<DoneIcon/>,text:"Go to cart"}:
       {icon:<AddShoppingCartIcon/>,text:"Add to Cart"}:
       {icon:<NotificationsNoneTwoTone/>,text:"Notify Me"});
+
     if(cartIcon.text==="Notify Me"){
       notifyStyle={backgroundColor:"#f84f31",color:"white"}
     }
@@ -28,8 +29,7 @@ const Product = (props) => {
       notifyStyle={backgroundColor:"#23c552",color:"#333333"}
     }
     const onCartAdd=(e)=>{
-      console.log(cartItems);
-      if([...cartItems.itemId].includes(product.id)){
+      if([product.id] in cartItems){
         console.log("found")
         navigate('/cart');
       }
@@ -38,7 +38,7 @@ const Product = (props) => {
       }
       else{
         if(cartIcon.text!=="Will Notify Soon"){
-          addToCart(product,"add");
+          addToCart({...product,quantity:1},"add");
           setCartIcon({icon:<DoneIcon/>,text:"Go to Cart"});
         }
       }
